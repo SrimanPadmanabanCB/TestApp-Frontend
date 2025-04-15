@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: testing
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!!!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Register Artifacts
+        uses: cloudbees-gha-cbp/register-build-artifact@main
+        with:
+          name: "gha-artifact-test-1"
+          version: 3.0.0
+          url: "docker.io/calculi-corp/gha-action/gha-artifact-3:latest"
+          digest: "sha256:f4a123ee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2"
+          type: "docker"
+          cloudbees-url: "https://api.saas-preprod.beescloud.com"
+          cloudbees-pat: ${{ secrets.CBP_PAT }}
+
+      - name: Publish Test Results for Go
+        uses: cloudbees-gha-cbp/publish-test-results@main
+        with:
+          test-type: GO
+          folder-path: test_reports/*
+          cloudbees-url: "https://api.saas-preprod.beescloud.com"
+          cloudbees-pat: ${{ secrets.CBP_PAT }}

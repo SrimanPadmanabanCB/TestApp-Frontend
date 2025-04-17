@@ -1,4 +1,4 @@
-name: GHA Workflow
+name: GHA Build
 
 on:
     workflow_dispatch:

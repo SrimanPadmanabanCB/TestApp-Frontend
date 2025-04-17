@@ -1,6 +1,6 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: Deploy
+name: cbp-deploy
 on:
   workflow_dispatch:
     inputs:
@@ -25,7 +25,7 @@ jobs:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
-          name: "${{ inputs.artifactName }}"
-          version: "${{ inputs.artifactVersion }}"
-          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
-          target-environment: "${{ inputs.environment }}"
+          name: ${{ inputs.artifactName }}
+          version: ${{ inputs.artifactVersion }}
+          url: docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}
+          target-environment: ${{ inputs.environment }}

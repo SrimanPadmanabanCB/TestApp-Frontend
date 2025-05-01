@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Compile Code
-        run: echo "Compiling..."
+        run: echo "Compiling...."
 
       - name: Produce Binary
         run: sleep 5

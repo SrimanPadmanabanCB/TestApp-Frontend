@@ -28,7 +28,7 @@ jobs:
           url: docker.io/TestApp/Frontend:1.0.0
           digest: "sha256:r5a423fe08af5e43a7fea6c4df9c25cdf269ee113168c19722f87876677c5cb2"
           type: "docker"
-          cloudbees-pat: ${{ secrets.CBP_PAT }}
+          cloudbees-pat: ${{ secrets.CBP_PROD_PAT }}
             
       - name: Publish evidence
         uses: cloudbees-io-gha/publish-evidence-item@main

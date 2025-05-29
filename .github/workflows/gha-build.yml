@@ -1,10 +1,10 @@
 name: GHA Build
 
 on:
-    push:
-     branches:
-      - main
-    workflow_dispatch:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
 
 jobs:
   build:
